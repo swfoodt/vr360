@@ -7,24 +7,23 @@ let hasChanged = false;
 let imgCurrent = 0;
 
 function imageLoop() {
-    let imgs = [];
-    imgs[0] = "./images/img00001.jpg";
-    imgs[1] = "./images/img00002.jpg";
-    imgs[2] = "./images/img00003.jpg";
+  let imgs = [];
+  imgs[0] = "./images/img00001.jpg";
+  imgs[1] = "./images/img00002.jpg";
+  imgs[2] = "./images/img00003.jpg";
 
-    
-    if(++imgCurrent > 2){
-        imgCurrent = 0
-    }
+  if (++imgCurrent > 2) {
+    imgCurrent = 0;
+  }
 
-    return imgs[imgCurrent]
+  return imgs[imgCurrent];
 }
 
 function initChange() {
-    skytemp.setAttribute("material", "opacity", 1);
-    sky.setAttribute("material", "opacity", 0);
-    sky.setAttribute("src", imageLoop());
-    console.log(sky.getAttribute("src"))
+  skytemp.setAttribute("material", "opacity", 1);
+  sky.setAttribute("material", "opacity", 0);
+  sky.setAttribute("src", imageLoop());
+  console.log(sky.getAttribute("src"));
 }
 
 function changing() {
@@ -32,9 +31,9 @@ function changing() {
   var opacity2 = 0;
   var posZ = 0;
   var fadeOutInterval = setInterval(function () {
-    console.log(camera.getAttribute("position"))
-    posZ -= 3
-    camera.setAttribute("position", {x: 0, y: 1.6, z: posZ})
+    console.log(camera.getAttribute("position"));
+    posZ -= 3;
+    camera.setAttribute("position", { x: 0, y: 1.6, z: posZ });
     opacity1 -= 0.05;
     opacity2 += 0.05;
     skytemp.setAttribute("material", "opacity", opacity1);
@@ -46,21 +45,21 @@ function changing() {
 }
 
 function finishChange() {
-    setTimeout(() => {
-        skytemp.setAttribute("src", sky.getAttribute("src"));
-    },2000)
+  setTimeout(() => {
+    skytemp.setAttribute("src", sky.getAttribute("src"));
+  }, 2000);
 }
 
 document.onkeydown = function (e) {
   var keyNum = window.event ? e.key : "";
-  if (keyNum === "z") {
-    if(hasChanged){
-        alert("所上传的图片不存在图像序列")
-        return
+  if (keyNum === "z" || keyNum === "Z") {
+    if (hasChanged) {
+      alert("所上传的图片不存在图像序列");
+      return;
     }
-    initChange()
-    changing()
-    finishChange()
+    initChange();
+    changing();
+    finishChange();
   }
 };
 
