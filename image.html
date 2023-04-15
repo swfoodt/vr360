@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./module/aframe-master.js"></script>
+    <title>全景图创建</title>
+
+    <script>
+      AFRAME.registerComponent("cursor-listener", {
+        init: function () {
+          const arrow = document.getElementById("arrow");
+          arrow.addEventListener("click", () => {
+            alert("sdass");
+          });
+        },
+      });
+    </script>
+
+    <style>
+      * {
+        font-size: 20px;
+      }
+
+      .tips {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        width: 100%;
+        text-align: center;
+        z-index: 10;
+      }
+
+      .tips > p{
+        width: 60%;
+        padding: 0 10px;
+        border-radius: 50px;
+        color: white;
+        background-color: #000000;
+        user-select: none;
+      }
+
+      .fileBtn {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        width: 6rem;
+        height: 2rem;
+        background: #00000061;
+        border-radius: 0.4rem;
+        border: 2px solid black;
+        color: rgba(255, 255, 255, 0.473);
+        cursor: pointer;
+        text-align: center;
+        line-height: 2rem;
+        font-size: 0.9rem;
+        z-index: 20;
+        transition: all 0.5s;
+        user-select: none;
+      }
+
+      .fileBtn:hover {
+        background: #000000;
+        color: rgb(255, 255, 255);
+      }
+
+      input {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tips">
+      <p>
+        使用<strong>鼠标</strong>旋转视角，<strong> WASD </strong
+        >控制视角移动，点击<strong> Z </strong>过渡到下一张全景图
+      </p>
+    </div>
+    <label class="fileBtn" for="imgInput">上传全景图</label>
+    <input id="imgInput" type="file" accept="image/png, image/jpeg" />
+    <a-scene>
+      <a-sky
+        id="image"
+        src="./images/img00001.jpg"
+        material="transparent: true; opacity: 1"
+        rotation="0 -100 0"
+      ></a-sky>
+      <a-sky
+        id="imageTemp"
+        src="./images/img00001.jpg"
+        material="transparent: true; opacity: 0"
+        rotation="0 -100 0"
+      ></a-sky>
+      <a-entity
+        id="camera"
+        camera
+        look-controls
+        wasd-controls="acceleration:1000"
+        position="0 1.6 0"
+      ></a-entity>
+    </a-scene>
+
+    <script src="./image.js"></script>
+  </body>
+</html>

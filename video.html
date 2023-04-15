@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Video</title>
+    <meta name="description" content="Video - A-Frame" />
+    <script src="./module/aframe-master.js"></script>
+    <script src="./module/play-on-click.js"></script>
+    <script src="./module/hide-on-play.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <video
+          id="video"
+          loop
+          crossorigin="anonymous"
+          playsinline
+          webkit-playsinline
+          src="./video/sence.mp4"
+        ></video>
+      </a-assets>
+      <a-videosphere rotation="0 -90 0" src="#video" play-on-click>
+      </a-videosphere>
+      <a-camera>
+        <a-entity
+          position="0 0 -1.5"
+          text="align:center;
+                    width:6;
+                    wrapCount:100;
+                    color: white;
+                    value: Click or tap to start video"
+          hide-on-play="#video"
+        >
+        </a-entity>
+      </a-camera>
+    </a-scene>
+  </body>
+</html>
